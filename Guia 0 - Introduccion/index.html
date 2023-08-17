@@ -6,12 +6,19 @@
         <meta name="viewport" content="width=device-width. initial-scale=1.0">
         <title>Picturesque</title>
         <style>
+            hr.solid {
+                color: antiquewhite;
+            }
+
             .picturesque {
                 color:darkseagreen;
                 text-align: center;
+                margin-left: 32px;
+                margin-top: 37px;
                 font-family: 'Asap';
-                font-size: 32px;
+                font-size: 37px;
             }
+
             img {
                 width: 100px;
                 border-radius: 15px;
@@ -22,7 +29,11 @@
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
-                width: 40%;
+                width: 35%;
+            }
+
+            ul {
+                list-style-type: none;
             }
 
             p {
@@ -36,12 +47,31 @@
                 text-align: center;
                 font-weight: 600;
             }
+
+            span.copyright {
+                font-size: 90%;
+                color: darkgrey;
+            }
         </style>
     </head>
     <body>
-        <h1 class="picturesque">Picturesque</h1>
-        <img src="imagenes/clickwallpapers-morainelake-cidades-4k-img1.jpg" alt="Lake Moraine, Canada" class="center">
-        <p>Lake Moraine, Canada</p>
-        <p class="slogan">Come and discover <em>nature!</em></p>
+        <h1 class="picturesque">Picturesque</h1> 
+        <br>
+        <hr class="solid">
+        <br>
+        <ul>
+            <li>
+                <img src="imagenes/clickwallpapers-morainelake-cidades-4k-img1.jpg" alt="Lake Moraine, Canada" class="center">
+                <p>Lake Moraine, Canada <span class="copyright">(&copy; Unknown)</span></p>
+                <p class="slogan">"Come and discover <em>nature!</em>"</p>
+            </li>
+            <br>
+            <br>
+            <li>
+                <img src="imagenes/K5O3RU.webp" alt="Lake Moraine, Canada" class="center">
+                <p>Yellowstone National Park, United States <span class="copyright">(&copy; Unknown)</span></p>
+                <p class="slogan">"For the benefit and enjoyment of the people"</p>
+            </li>
+        </ul>
     </body>
 </html>
