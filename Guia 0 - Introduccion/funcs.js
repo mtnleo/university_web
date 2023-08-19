@@ -1,3 +1,4 @@
+
 /*
 function BiggerImage(id) {
     var elem = document.getElementById(id);
