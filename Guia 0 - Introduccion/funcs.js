@@ -1,7 +1,4 @@
-function PromptImageName(text) {
-    alert(text)
-}
-
+/*
 function BiggerImage(id) {
     var elem = document.getElementById(id);
     var oldWidth = elem.style.width;
@@ -13,11 +10,7 @@ function BiggerImage(id) {
     var numericWidth = parseFloat(oldWidth);
     var newWidth = numericWidth + numericWidth * 0.05;
 
-    for(var i = numericWidth; i < newWidth; i++) {
-        
-        numericWidth += 0.5;
-        elem.style.width = numericWidth + "px";
-    }
+    elem.style.width = newWidth + "px";
     
 }
 
@@ -34,3 +27,4 @@ function SmallerImage(id) {
 
     elem.style.width = newWidth + "px";
 }
+*/

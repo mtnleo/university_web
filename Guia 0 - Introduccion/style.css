@@ -13,11 +13,33 @@ hr {
     border: none;
 }
 
+@keyframes pop {
+    from {width: 35%;}
+    to {width: 38%;}
+}
+
+@keyframes pop_back {
+    from {width: 38%;}
+    to {width: 35%;}
+}
+
 img {
     width: 100px;
     border-radius: 15px;
     position: relative;
     filter: drop-shadow(1px 1px 2.5px black);
+}
+
+.center:hover {
+    animation-name: pop;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.center:not(:hover) {
+    animation-name: pop_back;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 
 .center {
@@ -46,4 +68,8 @@ p.slogan {
 span.copyright {
     font-size: 90%;
     color: darkgrey;
+}
+
+span.name:hover {
+    color:rgb(224, 144, 94);
 }
