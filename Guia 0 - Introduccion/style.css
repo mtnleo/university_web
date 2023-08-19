@@ -1,0 +1,49 @@
+.picturesque {
+    color:darkseagreen;
+    text-align: center;
+    margin-left: 32px;
+    margin-top: 37px;
+    font-family: 'Asap';
+    font-size: 37px;
+}
+
+hr {
+    height: 2px;
+    background-color:darkseagreen;
+    border: none;
+}
+
+img {
+    width: 100px;
+    border-radius: 15px;
+    position: relative;
+    filter: drop-shadow(1px 1px 2.5px black);
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+p {
+    color:#1f1f1f;
+    text-align: center;
+    font-family: Roboto,Helvetica,sans-serif;
+    font-size: larger;
+}
+
+p.slogan {
+    text-align: center;
+    font-weight: 600;
+}
+
+span.copyright {
+    font-size: 90%;
+    color: darkgrey;
+}
