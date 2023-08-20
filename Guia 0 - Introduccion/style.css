@@ -73,3 +73,33 @@ span.copyright {
 span.name:hover {
     color:rgb(224, 144, 94);
 }
+
+nav > a {
+    color: darkolivegreen;
+    text-decoration: none;
+    margin-left: 32px;
+    text-align: center;
+    font-family: Roboto,Helvetica,sans-serif;
+    font-size: larger;
+    font-weight: bold;
+    width: 50%;
+}
+
+nav {
+    width: 100%;
+    flex: auto;
+    text-align: center;
+}
+
+h2 {
+    padding-bottom: 20px;
+    color: darkseagreen;
+    font-family: "Asap";
+    text-align: center;
+}
+
+p.about_us {
+    text-align: left;
+    padding-left: 20%;
+    padding-right: 20%;
+}
