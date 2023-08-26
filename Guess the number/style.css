@@ -1,6 +1,6 @@
 .center {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 #number_guess {
@@ -9,6 +9,14 @@
 
 p, h2 {
     color:azure;
+}
+
+h2 {
+    font-size: 70px;
+}
+
+p {
+    font-size: 40px;
 }
 
 body {
