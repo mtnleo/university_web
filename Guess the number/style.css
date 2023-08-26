@@ -1,0 +1,19 @@
+.center {
+    text-align: center;
+    padding: 20px;
+}
+
+#number_guess {
+    text-align: center;
+}
+
+p, h2 {
+    color:azure;
+}
+
+body {
+    background: rgb(23,20,88);
+    background: linear-gradient(90deg, rgba(23,20,88,1) 0%, rgba(57,57,131,1) 48%, rgba(46,75,126,1) 100%);
+    font-family: "Asap";
+    margin-top: 10%;
+}
