@@ -1,51 +1,52 @@
-const formul = document.getElementById("form")
-const secret_number = Math.floor(Math.random() * 200)
-// create gradient array ----------------------------------
-//still working on it
+if (window.location.pathname.includes("index.html")) {
+    const formul = document.getElementById("form")
+    const secret_number = Math.floor(Math.random() * 200)
+    // create gradient array ----------------------------------
+    //still working on it
 
 
-function calculate_separation(mystery, guess) { //this function calculates the % of separation between the guess and the mystery number
-    let percentage
+    function calculate_separation(mystery, guess) { //this function calculates the % of separation between the guess and the mystery number
+        let percentage
 
-    if (mystery > guess ) {
-        percentage = (guess * 100) / mystery
+        if (mystery > guess ) {
+            percentage = (guess * 100) / mystery
+        }
+        else if (mystery <= guess) {
+            percentage = (mystery * 100) / guess
+        }
+
+        return percentage
     }
-    else if (mystery <= guess) {
-        percentage = (mystery * 100) / guess
-    }
 
-    return percentage
+    formul.addEventListener("submit", (event) => {
+        event.preventDefault()
+
+        let num_guess = document.getElementById("guess").value ?? -1
+        let separation = parseInt(calculate_separation(secret_number, num_guess))
+        
+        
+        //provisional --------------------------------------
+        if (num_guess < secret_number) {
+            document.getElementById("info").innerText = "The number is bigger"
+        }
+        else if (num_guess > secret_number) {
+            document.getElementById("info").innerText = "The number is smaller"
+        }
+        // provisional --------------------------------------
+        
+
+        if (num_guess < 0 || num_guess > 200) {
+            document.getElementById("info").innerText = "Guess a number between 0 and 200"
+        }
+        else if (num_guess == secret_number) {
+            document.getElementById("info").innerText = "You won!"
+        }
+
+        document.getElementById("number").innerText = num_guess
+        //document.getElementById("info").innerText = ""
+        
+    })
 }
-
-formul.addEventListener("submit", (event) => {
-    event.preventDefault()
-
-    let num_guess = document.getElementById("guess").value ?? -1
-    let separation = parseInt(calculate_separation(secret_number, num_guess))
-    
-    
-    //provisional --------------------------------------
-    if (num_guess < secret_number) {
-        document.getElementById("info").innerText = "The number is bigger"
-    }
-    else if (num_guess > secret_number) {
-        document.getElementById("info").innerText = "The number is smaller"
-    }
-    // provisional --------------------------------------
-    
-
-    if (num_guess < 0 || num_guess > 200) {
-        document.getElementById("info").innerText = "Guess a number between 0 and 200"
-    }
-    else if (num_guess == secret_number) {
-        document.getElementById("info").innerText = "You won!"
-    }
-
-    document.getElementById("number").innerText = num_guess
-    //document.getElementById("info").innerText = ""
-    
-})
-
 ////////////////////////////////
 
 class User {
@@ -75,19 +76,62 @@ class User {
     // --------------------- Other methods
 
     increaseScore() {
-        this.setScore(this.getScore + 1);
+        this.setScore(this.getScore() + 1);
     }
 }
 
-const signup = document.getElementById("signup")
+var users = new Array()
 
-signup.addEventListener("submit", (event) => {
+if (window.location.pathname.includes("signup.html")) {
+    // SIGN UP -------------------------------
+    const signup = document.getElementById("form_signup")
 
-    const username = document.getElementById("username").value
-    const email = document.getElementById("email").value
-    const pass = document.getElementById("pass").value
+    signup.addEventListener("submit", (event) => {
+        event.preventDefault()
 
-    let alumno = new User(username, pass, email)
-    
+        const username = document.getElementById("username_signup").value
+        const email = document.getElementById("email_signup").value
+        const pass = document.getElementById("pass_signup").value
 
-})
+        const alumno = new User(username, pass, email)
+        
+        users.push(alumno)
+
+        console.log("Registrado")
+    })
+
+    // LOG IN -------------------------------
+    const login = document.getElementById("form_login")
+
+    function searchLogin(username_check, pass_check) {
+        if (users != null) {
+            for (let i = 0; i < users.length; i++) {
+                let user_for = users[i];
+
+                if (user_for.username === username_check && user_for.pass === pass_check) {
+                    return user_for;
+                }
+            }
+        }
+        return null;
+    }
+
+    login.addEventListener("submit", (event) => {
+        event.preventDefault()
+
+        const login_username = document.getElementById("username_login").value
+        const login_pass = document.getElementById("pass_login").value
+
+        const logged_user = searchLogin(login_username, login_pass)
+
+        if (logged_user === null) {
+            alert("Couldn't log in. Try again.")
+            console.log("No se pudo loguear")
+        }
+        else {
+            alert("Welcome! " + logged_user.username)
+            console.log("Logueado")
+        }
+
+    })
+}
