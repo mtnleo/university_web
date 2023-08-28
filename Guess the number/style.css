@@ -7,12 +7,18 @@
     text-align: center;
 }
 
-p, h2 {
+
+p, h2, h3, label, a {
     color:azure;
+}
+
+a {
+    text-decoration: none;
 }
 
 h2 {
     font-size: 70px;
+    color: #3ba5d2;
 }
 
 p {
