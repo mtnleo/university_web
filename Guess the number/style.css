@@ -12,6 +12,11 @@ p, h2, h3, label, a {
     color:azure;
 }
 
+#score {
+    text-align: center;
+    font-size: 30px;
+}
+
 a {
     text-decoration: none;
     margin-left: 20%;
@@ -51,5 +56,5 @@ body {
     background: rgb(23,20,88);
     background: linear-gradient(90deg, rgba(23,20,88,1) 0%, rgba(57,57,131,1) 48%, rgba(46,75,126,1) 100%);
     font-family: "Asap";
-    margin-top: 10%;
+    margin-top: 5%;
 }

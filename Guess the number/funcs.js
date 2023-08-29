@@ -1,6 +1,12 @@
+var global_score = 0 // it changes if the player logs in
+
+function Overwrite_score() {
+    document.getElementById("score").innerText = "Score: " + global_score
+}
+
 if (window.location.pathname.includes("index.html")) {
     const formul = document.getElementById("form")
-    const secret_number = Math.floor(Math.random() * 200)
+    var secret_number = Math.floor(Math.random() * 200)
     // create gradient array ----------------------------------
     //still working on it
 
@@ -24,7 +30,7 @@ if (window.location.pathname.includes("index.html")) {
         let num_guess = document.getElementById("guess").value ?? -1
         let separation = parseInt(calculate_separation(secret_number, num_guess))
         
-        
+        document.getElementById("number").innerText = num_guess
         //provisional --------------------------------------
         if (num_guess < secret_number) {
             document.getElementById("info").innerText = "The number is bigger"
@@ -39,10 +45,14 @@ if (window.location.pathname.includes("index.html")) {
             document.getElementById("info").innerText = "Guess a number between 0 and 200"
         }
         else if (num_guess == secret_number) {
-            document.getElementById("info").innerText = "You won!"
+            document.getElementById("info").innerText = "You won! Guess again to start a new game"
+            global_score++
+            Overwrite_score()
+            secret_number = Math.floor(Math.random() * 200)
+            console.log(global_score)
         }
 
-        document.getElementById("number").innerText = num_guess
+        
         //document.getElementById("info").innerText = ""
         
     })
@@ -131,6 +141,7 @@ if (window.location.pathname.includes("signup.html")) {
         else {
             alert("Welcome! " + logged_user.username)
             console.log("Logueado")
+            global_score = logged_user.score
         }
 
     })
