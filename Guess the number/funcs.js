@@ -1,4 +1,6 @@
 var global_score = 0 // it changes if the player logs in
+var users = new Array()
+var current_user = null
 
 function Overwrite_score() {
     document.getElementById("score").innerText = "Score: " + global_score
@@ -7,8 +9,12 @@ function Overwrite_score() {
 if (window.location.pathname.includes("index.html")) {
     const formul = document.getElementById("form")
     var secret_number = Math.floor(Math.random() * 200)
-    // create gradient array ----------------------------------
-    //still working on it
+
+    //check if user is logged
+    if (current_user != null) {
+        global_score = current_user.score
+        Overwrite_score()
+    }
 
 
     function calculate_separation(mystery, guess) { //this function calculates the % of separation between the guess and the mystery number
@@ -64,7 +70,7 @@ class User {
         this.username = username;
         this.pass = pass;
         this.email = email;
-        this.score = 0;
+        this.score = 10;
     }
 
     getUsername() {
@@ -90,7 +96,6 @@ class User {
     }
 }
 
-var users = new Array()
 
 if (window.location.pathname.includes("signup.html")) {
     // SIGN UP -------------------------------
@@ -103,9 +108,9 @@ if (window.location.pathname.includes("signup.html")) {
         const email = document.getElementById("email_signup").value
         const pass = document.getElementById("pass_signup").value
 
-        const alumno = new User(username, pass, email)
+        const current_user = new User(username, pass, email)
         
-        users.push(alumno)
+        users.push(current_user)
 
         console.log("Registrado")
     })
@@ -132,16 +137,17 @@ if (window.location.pathname.includes("signup.html")) {
         const login_username = document.getElementById("username_login").value
         const login_pass = document.getElementById("pass_login").value
 
-        const logged_user = searchLogin(login_username, login_pass)
+        current_user = searchLogin(login_username, login_pass)
 
-        if (logged_user === null) {
+        if (current_user === null) {
             alert("Couldn't log in. Try again.")
             console.log("No se pudo loguear")
         }
         else {
-            alert("Welcome! " + logged_user.username)
+            alert("Welcome! " + current_user.username)
             console.log("Logueado")
-            global_score = logged_user.score
+            global_score = current_user.score
+            window.location.href = "index.html";
         }
 
     })

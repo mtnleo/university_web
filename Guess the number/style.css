@@ -10,6 +10,7 @@
 
 p, h2, h3, label, a {
     color:azure;
+    text-shadow: 0.5px 1px 1px #000000;
 }
 
 #score {
