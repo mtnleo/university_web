@@ -51,7 +51,6 @@ function get_local_user() {
     return JSON.parse(localStorage.getItem("logged_user"))
 }
 
-
 if (window.location.pathname.includes("signup.html")) {
     // SIGN UP -------------------------------
     const signup = document.getElementById("form_signup")
@@ -156,7 +155,8 @@ if (window.location.pathname.includes("index.html")) {
         event.preventDefault()
 
         let num_guess = document.getElementById("guess").value ?? -1
-      
+        document.getElementById("guess").value = "";
+
         document.getElementById("number").innerText = num_guess
         //provisional --------------------------------------
         if (num_guess < secret_number) {
