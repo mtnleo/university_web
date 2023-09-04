@@ -3,11 +3,11 @@ var users = new Array()
 var current_user = null
 
 class User {
-    constructor(username, pass, email) {
+    constructor(username, pass, email, score) {
         this.username = username;
         this.pass = pass;
         this.email = email;
-        this.score = 0;
+        this.score = score ?? 0;
     }
 
     getUsername() {
@@ -50,6 +50,33 @@ function get_local_user() {
     return JSON.parse(localStorage.getItem("logged_user"))
 }
 
+
+function searchLogin(user_array, username_check, pass_check) {
+    if (user_array != null) {
+        for (let i = 0; i < user_array.length; i++) {
+            let user_for = user_array[i];
+
+            if (user_for.username === username_check && user_for.pass === pass_check) {
+                return user_for;
+            }
+        }
+    }
+    return null;
+}
+
+function searchLoginIndex(user_array, username_check, pass_check) {
+    if (user_array != null) {
+        for (let i = 0; i < user_array.length; i++) {
+            let user_for = user_array[i];
+
+            if (user_for.username === username_check && user_for.pass === pass_check) {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
 ///###############################################
 /// IF FOR THE SIGNUP --------------------------
 ///###############################################
@@ -85,18 +112,6 @@ if (window.location.pathname.includes("signup.html")) {
 
     const login = document.getElementById("form_login")
 
-    function searchLogin(username_check, pass_check) {
-        if (users != null) {
-            for (let i = 0; i < users.length; i++) {
-                let user_for = users[i];
-
-                if (user_for.username === username_check && user_for.pass === pass_check) {
-                    return user_for;
-                }
-            }
-        }
-        return null;
-    }
 
     login.addEventListener("submit", (event) => {
         event.preventDefault()
@@ -104,7 +119,7 @@ if (window.location.pathname.includes("signup.html")) {
         const login_username = document.getElementById("username_login").value
         const login_pass = document.getElementById("pass_login").value
 
-        current_user = searchLogin(login_username, login_pass)
+        current_user = searchLogin(users, login_username, login_pass)
         
 
 
@@ -176,12 +191,17 @@ if (window.location.pathname.includes("index.html")) {
         else if (num_guess == secret_number) {
             document.getElementById("info").innerText = "You won! Guess again to start a new game"
 
+            
             // score handling
             global_score++
             Overwrite_score()
             current_user.score = global_score
             set_local_user(current_user)
-            
+
+            console.log("Current user score: ", current_user)
+            let old_user_index =  searchLoginIndex(users_logged, current_user.username, current_user.pass)
+            users_logged.splice(old_user_index, 1, current_user)
+            console.log("Array same user score: ", users_logged[old_user_index] ?? "no existe")
             set_user_array(users_logged)
 
             // getting a new number
