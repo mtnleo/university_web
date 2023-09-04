@@ -228,7 +228,9 @@ if (window.location.pathname.includes("profile.html")) {
         window.location.href = "signup.html";
     }
 
-    document.getElementById("profile_name").innerText = "Username: " + current_user.getUsername();
-    document.getElementById("profile_mail").innerText = "Email: " + current_user.getMail();
-    document.getElementById("profile_score").innerText = "Total Score: " + current_user.getScore();
+    console.log("This is running")
+
+    document.getElementById("profile_name").innerText = "Username: " + current_user.username;
+    document.getElementById("profile_mail").innerText = "Email: " + current_user.email;
+    document.getElementById("profile_score").innerText = "Total Score: " + current_user.score;
 }

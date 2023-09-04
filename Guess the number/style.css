@@ -53,6 +53,14 @@ p {
     font-size: 40px;
 }
 
+.profile_h2 {
+    font-size: 40px;
+}
+
+.profile_p {
+    font-size: 23px;
+}
+
 body {
     background: rgb(23,20,88);
     background: linear-gradient(90deg, rgba(23,20,88,1) 0%, rgba(57,57,131,1) 48%, rgba(46,75,126,1) 100%);
