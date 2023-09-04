@@ -38,8 +38,8 @@ function set_local_user(logged_user) {
 
 }
 
-function set_user_array() {
-    localStorage.setItem("user_array", JSON.stringify(users))
+function set_user_array(users_save) {
+    localStorage.setItem("user_array", JSON.stringify(users_save))
 }
 
 function get_user_array() {
@@ -50,11 +50,16 @@ function get_local_user() {
     return JSON.parse(localStorage.getItem("logged_user"))
 }
 
+///###############################################
+/// IF FOR THE SIGNUP --------------------------
+///###############################################
+
 if (window.location.pathname.includes("signup.html")) {
     ////////////////////////////////////////////////
     // SIGN UP -------------------------------------
     ////////////////////////////////////////////////
     users = get_user_array()
+    console.log(users.length)
     const signup = document.getElementById("form_signup")
 
     signup.addEventListener("submit", (event) => {
@@ -126,6 +131,8 @@ function Overwrite_score() {
 
 if (window.location.pathname.includes("index.html")) {
     const formul = document.getElementById("form")
+    let users_logged = get_user_array()
+    console.log("Usuarios en el array: " + users_logged.length)
     var secret_number = Math.floor(Math.random() * 200)
 
     try {
@@ -175,6 +182,7 @@ if (window.location.pathname.includes("index.html")) {
             current_user.score = global_score
             set_local_user(current_user)
             
+            set_user_array(users_logged)
 
             // getting a new number
             secret_number = Math.floor(Math.random() * 200)
