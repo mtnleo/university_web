@@ -144,10 +144,14 @@ function Overwrite_score() {
     document.getElementById("score").innerText = "Score: " + global_score
 }
 
+///###############################################
+/// IF FOR THE INDEX -----------------------------
+///###############################################
+
 if (window.location.pathname.includes("index.html")) {
     const formul = document.getElementById("form")
     let users_logged = get_user_array()
-    console.log("Usuarios en el array: " + users_logged.length)
+    console.log("User in the array: " + users_logged.length)
     var secret_number = Math.floor(Math.random() * 200)
 
     try {
@@ -212,6 +216,19 @@ if (window.location.pathname.includes("index.html")) {
         
     })
 }
-////////////////////////////////
 
+///###############################################
+/// IF FOR THE PROFILE ---------------------------
+///###############################################
 
+if (window.location.pathname.includes("profile.html")) {
+    current_user = get_local_user()
+
+    if (!current_user) {
+        window.location.href = "signup.html";
+    }
+
+    document.getElementById("profile_name").innerText = "Username: " + current_user.getUsername();
+    document.getElementById("profile_mail").innerText = "Email: " + current_user.getMail();
+    document.getElementById("profile_score").innerText = "Total Score: " + current_user.getScore();
+}

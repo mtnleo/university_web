@@ -20,7 +20,7 @@ p, h2, h3, label, a {
 
 a {
     text-decoration: none;
-    margin-left: 20%;
+    padding: 20px;
 }
 
 label {
