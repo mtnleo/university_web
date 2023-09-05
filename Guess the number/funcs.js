@@ -1,6 +1,8 @@
 var global_score = 0 // it changes if the player logs in
 var users = new Array()
 var current_user = null
+const number_regex = /[0-9]/;
+const letters_regex = /[a-z]/i;
 
 class User {
     constructor(username, pass, email, score) {
@@ -144,6 +146,10 @@ function Overwrite_score() {
     document.getElementById("score").innerText = "Score: " + global_score
 }
 
+function Validate_guess(guess) {
+    return !letters_regex.test(guess); //checks if the guess has letters
+}
+
 ///###############################################
 /// IF FOR THE INDEX -----------------------------
 ///###############################################
@@ -178,40 +184,44 @@ if (window.location.pathname.includes("index.html")) {
         let num_guess = document.getElementById("guess").value ?? -1
         document.getElementById("guess").value = "";
 
-        document.getElementById("number").innerText = num_guess
-        //provisional --------------------------------------
-        if (num_guess < secret_number) {
-            document.getElementById("info").innerText = "The number is bigger"
-        }
-        else if (num_guess > secret_number) {
-            document.getElementById("info").innerText = "The number is smaller"
-        }
-        // provisional --------------------------------------
-        
+        if (Validate_guess(num_guess)) {
 
-        if (num_guess < 0 || num_guess > 200) {
+            document.getElementById("number").innerText = num_guess
+
+            if (num_guess < secret_number) {
+                document.getElementById("info").innerText = "The number is bigger"
+            }
+            else if (num_guess > secret_number) {
+                document.getElementById("info").innerText = "The number is smaller"
+            }
+            
+
+            if (num_guess < 0 || num_guess > 200) {
+                document.getElementById("info").innerText = "Guess a number between 0 and 200"
+            }
+            else if (num_guess == secret_number) {
+                document.getElementById("info").innerText = "You won! Guess again to start a new game"
+
+                
+                // score handling
+                global_score++
+                Overwrite_score()
+                current_user.score = global_score
+                set_local_user(current_user)
+
+                console.log("Current user score: ", current_user)
+                let old_user_index =  searchLoginIndex(users_logged, current_user.username, current_user.pass)
+                users_logged.splice(old_user_index, 1, current_user)
+                console.log("Array same user score: ", users_logged[old_user_index] ?? "no existe")
+                set_user_array(users_logged)
+
+                // getting a new number
+                secret_number = Math.floor(Math.random() * 200)
+            }
+        }
+        else {
             document.getElementById("info").innerText = "Guess a number between 0 and 200"
         }
-        else if (num_guess == secret_number) {
-            document.getElementById("info").innerText = "You won! Guess again to start a new game"
-
-            
-            // score handling
-            global_score++
-            Overwrite_score()
-            current_user.score = global_score
-            set_local_user(current_user)
-
-            console.log("Current user score: ", current_user)
-            let old_user_index =  searchLoginIndex(users_logged, current_user.username, current_user.pass)
-            users_logged.splice(old_user_index, 1, current_user)
-            console.log("Array same user score: ", users_logged[old_user_index] ?? "no existe")
-            set_user_array(users_logged)
-
-            // getting a new number
-            secret_number = Math.floor(Math.random() * 200)
-        }
-
     
         
     })
@@ -227,8 +237,6 @@ if (window.location.pathname.includes("profile.html")) {
     if (!current_user) {
         window.location.href = "signup.html";
     }
-
-    console.log("This is running")
 
     document.getElementById("profile_name").innerText = "Username: " + current_user.username;
     document.getElementById("profile_mail").innerText = "Email: " + current_user.email;
