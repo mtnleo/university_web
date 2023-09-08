@@ -4,7 +4,7 @@ export class Cursor {
 
     constructor() {
         this.row = 1;
-        this.column = 1;
+        this.column = 0;
         this.word = new Array();
     }
 
@@ -53,18 +53,16 @@ export class Cursor {
     }
 
     addLetter(newLetter) {
-        if (newLetter != "Remove" && newLetter != "Enter") {
-            if (this.word.length < 5) {
-            this.word.push(newLetter);
-            }
-        }
-        else if(newLetter == "Remove") {
-            this.word.pop();
-        }
-        else {
-            //not yet
+        if (this.word.length < 5) {
+        this.word.push(newLetter);
         }
         
     }
-
+    
+    removeLetter() {
+        if (this.word.length > 0) {
+            this.word.pop();
+        }
+        
+    }
 }

@@ -31,8 +31,22 @@ keyboard.forEach(element => {
 
 // get the value of the button that's getting clicked
 function reply_click(e) {
-    cursor.addLetter(e);
-    console.log(cursor.getWord())
+    if (e != "Remove" && e != "Enter" && cursor.getWord().length < 5) {
+        cursor.addLetter(e);
+        document.getElementById("r" + cursor.getRow() + "c" + cursor.getColumn()).innerText = e;
+        cursor.increaseColumn();
+    }
+    else if(e == "Remove" && cursor.getWord().length > 0) {
+        cursor.removeLetter();
+        cursor.decreaseColumn();
+        document.getElementById("r" + cursor.getRow() + "c" + cursor.getColumn()).innerText = "";
+    }
+    else if (cursor.getWord().length == 5) {
+        // not yet
+    }
+    
+    console.log(cursor.getColumn());
+    console.log(cursor.getWord());
 }
 
 
