@@ -5,6 +5,7 @@ class Cursor {
     constructor() {
         this.row = 1;
         this.column = 1;
+        this.word = new Array();
     }
 
     // GETTERS AND SETTERS ---------------------------------

@@ -1,6 +1,7 @@
 var global_score = 0 // it changes if the player logs in
 var users = new Array()
 var current_user = null
+
 const number_regex = /[0-9]/;
 const letters_regex = /[a-z]/i;
 
@@ -155,6 +156,9 @@ function Validate_guess(guess) {
 ///###############################################
 
 if (window.location.pathname.includes("index.html")) {
+
+    let guess_counter = 0
+
     const formul = document.getElementById("form")
     let users_logged = get_user_array()
     console.log("User in the array: " + users_logged.length)
@@ -185,7 +189,7 @@ if (window.location.pathname.includes("index.html")) {
         document.getElementById("guess").value = "";
 
         if (Validate_guess(num_guess)) {
-
+            guess_counter++
             document.getElementById("number").innerText = num_guess
 
             if (num_guess < secret_number) {
@@ -208,6 +212,7 @@ if (window.location.pathname.includes("index.html")) {
                 Overwrite_score()
                 current_user.score = global_score
                 set_local_user(current_user)
+                guess_counter = 0
 
                 console.log("Current user score: ", current_user)
                 let old_user_index =  searchLoginIndex(users_logged, current_user.username, current_user.pass)
