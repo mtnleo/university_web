@@ -1,4 +1,4 @@
-class Cursor {
+export class Cursor {
 
     // CONSTRUCTOR ---------------------------------
 
@@ -20,6 +20,10 @@ class Cursor {
 
     setColumn(position) {
         this.column = position;
+    }
+
+    getWord() {
+        return this.word;
     }
 
     // METHODS ---------------------------------------
@@ -46,6 +50,21 @@ class Cursor {
         if (this.column > 0) {
             this.column--;
         }
+    }
+
+    addLetter(newLetter) {
+        if (newLetter != "Remove" && newLetter != "Enter") {
+            if (this.word.length < 5) {
+            this.word.push(newLetter);
+            }
+        }
+        else if(newLetter == "Remove") {
+            this.word.pop();
+        }
+        else {
+            //not yet
+        }
+        
     }
 
 }

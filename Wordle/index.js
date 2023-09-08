@@ -1,12 +1,15 @@
+// importing the Cursor class to control the keyboard and guesses
+import {Cursor} from "./Cursor.js"
+
 const keyboard = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", " ",
                  "a", "s", "d", "f", "g", "h", "j", "k", "l", " ",
                  "Enter", "z", "x", "c", "v", "b", "n", "m", "Remove", " "];
-
 const containers = ["top_row_kb", "mid_row_kb", "btm_row_kb"];
 
-// building the page
+const cursor = new Cursor();
+
+// building the page ---------------------------
 let i = 0;
-const actualWord = []
 
 keyboard.forEach(element => {
     if (element === " ") {
@@ -24,15 +27,13 @@ keyboard.forEach(element => {
         container.appendChild(newButton);
     }
 });
+// ------------------------------
 
-// get the id of the button that's getting clicked
+// get the value of the button that's getting clicked
 function reply_click(e) {
-    alert(e);
-    actualWord.push(e)
-    console.log(actualWord)
+    cursor.addLetter(e);
+    console.log(cursor.getWord())
 }
-
-
 
 
 // ...forEach(letra => {})
@@ -50,3 +51,20 @@ function reply_click(e) {
 // pusheando las teclas que van siendo tocadas por el usuario.
 
 // Y la misma logica del for para mostrar las letras en los cuadrados de arriba
+
+const guess_containers = ["row1", "row2", "row3", "row4", "row5", "row6"];
+
+let j = 0;
+
+guess_containers.forEach(element => {
+    for (let k = 0; k < 5; k++) {
+        let newBox = document.createElement("div");
+        newBox.setAttribute("id", "r" + element[3] + "c" + k);
+        newBox.setAttribute("class", "guess_box");
+        let nodeBox = document.createTextNode("");
+        newBox.appendChild(nodeBox);
+
+        let container = document.getElementById(element);
+        container.appendChild(newBox);
+    }
+})
