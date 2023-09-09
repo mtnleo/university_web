@@ -65,4 +65,8 @@ export class Cursor {
         }
         
     }
+
+    deleteWord() {
+        this.word = new Array();
+    }
 }

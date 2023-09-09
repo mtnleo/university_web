@@ -41,8 +41,26 @@ function reply_click(e) {
         cursor.decreaseColumn();
         document.getElementById("r" + cursor.getRow() + "c" + cursor.getColumn()).innerText = "";
     }
-    else if (cursor.getWord().length == 5) {
-        // not yet
+    else if (e == "Enter" && cursor.getWord().length == 5) {
+        //got to check first if word exists, then:
+        let colorArray = checkWordSent(cursor.getWord(), "opalo"); // I hardcode it now, gotta change it later
+        let curRow = cursor.getRow();
+
+        for (let j = 0; j < 5; j++) {
+            if (colorArray[j] == "green") {
+                document.getElementById("r" + curRow + "c" + j).style.backgroundColor = '#46DE49'; //green
+            }
+            else if (colorArray[j] == "yellow") {
+                document.getElementById("r" + curRow + "c" + j).style.backgroundColor = '#DED43F'; //yellow
+            } else {
+                document.getElementById("r" + curRow + "c" + j).style.backgroundColor = '#CCCCCC'; //gray
+            }
+            
+        }
+
+        cursor.setColumn(0);
+        cursor.deleteWord();
+        cursor.increaseRow();
     }
     
     console.log(cursor.getColumn());
@@ -67,8 +85,6 @@ function reply_click(e) {
 // Y la misma logica del for para mostrar las letras en los cuadrados de arriba
 
 const guess_containers = ["row1", "row2", "row3", "row4", "row5", "row6"];
-
-let j = 0;
 
 guess_containers.forEach(element => {
     for (let k = 0; k < 5; k++) {
@@ -105,12 +121,12 @@ function checkWordSent(wordSent, mysteryWord) {
     let mysteryWordArray = splitMysteryWordArray(mysteryWord);
     let colorArray = new Array();
 
-    if (mysteryWordArray == wordSent) {
+    if (mysteryWordArray == wordSent) { // check later if its all in caps or not
         console.log("You won"); // provisional code
     }
     else {
         for (let i = 0; i < 5; i++) {
-            if (wordSent[i] != mysteryWordArray[i]) {
+            if (wordSent[i].toUpperCase() != mysteryWordArray[i].toUpperCase()) {
                 if (wordSent[i] in mysteryWordArray) { //don't have wifi rn to check if this is like python, will check it later
                     colorArray[i] = "yellow";
                 }
