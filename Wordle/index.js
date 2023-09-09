@@ -33,7 +33,7 @@ keyboard.forEach(element => {
 function reply_click(e) {
     if (e != "Remove" && e != "Enter" && cursor.getWord().length < 5) {
         cursor.addLetter(e);
-        document.getElementById("r" + cursor.getRow() + "c" + cursor.getColumn()).innerText = e;
+        document.getElementById("r" + cursor.getRow() + "c" + cursor.getColumn()).innerText = e.toUpperCase();
         cursor.increaseColumn();
     }
     else if(e == "Remove" && cursor.getWord().length > 0) {
@@ -82,3 +82,47 @@ guess_containers.forEach(element => {
         container.appendChild(newBox);
     }
 })
+
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+//////////// main functions for the wordle(n't) ///////////////
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+
+function splitMysteryWordArray(mysteryWord) {
+    let mysteryWordArray = new Array();
+
+    for (let i = 0; i < 5; i++) {
+        mysteryWordArray[i] = mysteryWord[i];
+    }
+
+    return mysteryWordArray;
+}
+
+function checkWordSent(wordSent, mysteryWord) {
+    let mysteryWordArray = splitMysteryWordArray(mysteryWord);
+    let colorArray = new Array();
+
+    if (mysteryWordArray == wordSent) {
+        console.log("You won"); // provisional code
+    }
+    else {
+        for (let i = 0; i < 5; i++) {
+            if (wordSent[i] != mysteryWordArray[i]) {
+                if (wordSent[i] in mysteryWordArray) { //don't have wifi rn to check if this is like python, will check it later
+                    colorArray[i] = "yellow";
+                }
+                else {
+                    colorArray[i] = "gray";
+                }
+            } 
+            else {
+                colorArray[i] = "green";
+            }   
+        }
+    }
+
+    return colorArray;
+}
