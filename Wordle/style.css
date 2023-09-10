@@ -36,7 +36,20 @@ body {
 }
 
 
+@keyframes turn_to_green {
+    from {background-color: azure;}
+    to {background-color: #46DE49;}
+}
 
+@keyframes turn_to_yellow {
+    from {background-color: azure;}
+    to {background-color: #DED43F;}
+}
+
+@keyframes turn_to_gray {
+    from {background-color: azure;}
+    to {background-color: #CCCCCC;}
+}
 
 button {
     padding: 15px;

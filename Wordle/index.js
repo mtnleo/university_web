@@ -29,6 +29,15 @@ keyboard.forEach(element => {
 });
 // ------------------------------
 
+function checkWin(colorArray) {
+    if (!colorArray.includes("gray") && !colorArray.includes("yellow") && colorArray.includes("green")) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 // get the value of the button that's getting clicked
 function reply_click(e) {
     if (e != "Remove" && e != "Enter" && cursor.getWord().length < 5) {
@@ -48,19 +57,25 @@ function reply_click(e) {
 
         for (let j = 0; j < 5; j++) {
             if (colorArray[j] == "green") {
-                document.getElementById("r" + curRow + "c" + j).style.backgroundColor = '#46DE49'; //green
+                document.getElementById("r" + curRow + "c" + j).style.animationName = 'turn_to_green'; //green
+                document.getElementById("r" + curRow + "c" + j).style.animationDuration = '1s'; //animation
+                document.getElementById("r" + curRow + "c" + j).style.animationFillMode = 'forwards'; //animation
             }
             else if (colorArray[j] == "yellow") {
-                document.getElementById("r" + curRow + "c" + j).style.backgroundColor = '#DED43F'; //yellow
+                document.getElementById("r" + curRow + "c" + j).style.animationName = 'turn_to_yellow'; //yellow
+                document.getElementById("r" + curRow + "c" + j).style.animationDuration = '1s'; //animation
+                document.getElementById("r" + curRow + "c" + j).style.animationFillMode = 'forwards'; //animation
             } else {
-                document.getElementById("r" + curRow + "c" + j).style.backgroundColor = '#CCCCCC'; //gray
+                document.getElementById("r" + curRow + "c" + j).style.animationName = 'turn_to_gray'; //gray
+                document.getElementById("r" + curRow + "c" + j).style.animationDuration = '1s'; //animation
+                document.getElementById("r" + curRow + "c" + j).style.animationFillMode = 'forwards'; //animation
             }
-            
         }
 
         cursor.setColumn(0);
         cursor.deleteWord();
         cursor.increaseRow();
+
     }
     
     console.log(cursor.getColumn());
@@ -127,7 +142,7 @@ function checkWordSent(wordSent, mysteryWord) {
     else {
         for (let i = 0; i < 5; i++) {
             if (wordSent[i].toUpperCase() != mysteryWordArray[i].toUpperCase()) {
-                if (wordSent[i] in mysteryWordArray) { //don't have wifi rn to check if this is like python, will check it later
+                if (mysteryWordArray.includes(wordSent[i])) { //don't have wifi rn to check if this is like python, will check it later
                     colorArray[i] = "yellow";
                 }
                 else {
