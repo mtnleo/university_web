@@ -52,7 +52,7 @@ function reply_click(e) {
     }
     else if (e == "Enter" && cursor.getWord().length == 5) {
         //got to check first if word exists, then:
-        let colorArray = checkWordSent(cursor.getWord(), 'opalo'); // I hardcode it now, gotta change it later
+        let colorArray = checkWordSent(cursor.getWord(), getMysteryWord()); // I hardcode it now, gotta change it later
         let curRow = cursor.getRow();
 
         for (let j = 0; j < 5; j++) {
@@ -69,6 +69,7 @@ function reply_click(e) {
                 document.getElementById("r" + curRow + "c" + j).style.animationName = 'turn_to_gray'; //gray
                 document.getElementById("r" + curRow + "c" + j).style.animationDuration = '1s'; //animation
                 document.getElementById("r" + curRow + "c" + j).style.animationFillMode = 'forwards'; //animation
+                document.getElementById(cursor.getWord()[j]).className = 'deactivated'; //!!! STILL WORKING ON IT !!!
             }
         }
 
@@ -109,7 +110,7 @@ guess_containers.forEach(element => {
 
 
 // trying to fetch to an api
-/*
+
 const data = null;
 let mysteryWord = null;
 
@@ -131,7 +132,7 @@ xhr.send(data);
 function getMysteryWord() {
     return mysteryWord;
 }
-*/
+
 //
 
 function splitMysteryWordArray(mysteryWord) {

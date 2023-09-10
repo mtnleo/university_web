@@ -74,6 +74,28 @@ button {
     to {background-color: #301A4B;}
 }
 
+@keyframes deactivated_color_change_hover_on {
+    from {background-color: #9e9e9e;}
+    to {background-color: #d1d1d1;}
+}
+
+@keyframes deactivated_color_change_hover_off {
+    from {background-color: #d1d1d1;}
+    to {background-color: #9e9e9e;}
+}
+
+.deactivated:hover {
+    animation-name: deactivated_color_change_hover_on;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+}
+
+.deactivated:not(:hover) {
+    animation-name: deactivated_color_change_hover_off;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+}
+
 button:hover {
     animation-name: color_change_hover_on;
     animation-duration: 0.4s;
