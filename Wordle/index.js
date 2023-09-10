@@ -52,7 +52,7 @@ function reply_click(e) {
     }
     else if (e == "Enter" && cursor.getWord().length == 5) {
         //got to check first if word exists, then:
-        let colorArray = checkWordSent(cursor.getWord(), "opalo"); // I hardcode it now, gotta change it later
+        let colorArray = checkWordSent(cursor.getWord(), 'opalo'); // I hardcode it now, gotta change it later
         let curRow = cursor.getRow();
 
         for (let j = 0; j < 5; j++) {
@@ -82,22 +82,7 @@ function reply_click(e) {
     console.log(cursor.getWord());
 }
 
-
-// ...forEach(letra => {})
-// <button onclick="reply_click(letra)"
-
-// Guardar todas las teclas del teclado en un arreglo, en el orden correcto, es decir, empeza por "qwerty"
-// Mediante un for anda mostrandolas y cuando llegues al limite de teclas por linea, es decir, en la primer linea hay 10 letras, ahi indicas
-// que hay que meter las siguientes letras en un contenedor a parte, o sea el de la segunda linea del teclado.
-
-// En base a eso, como estas renderizando las letras de manera dinamica gracias a un arreglo, lo que podes hacer
-// es que al crear cada boton, al mismo boton le asignas la funcion de reply_click pasandole el indice como 
-// parametro para que sepa de que letra estas hablando y pueda insertarla mas adelante.
-
-// Para manejar el tema de que palabra esta siendo escrita deberias usar un arreglo en el cual vayas
-// pusheando las teclas que van siendo tocadas por el usuario.
-
-// Y la misma logica del for para mostrar las letras en los cuadrados de arriba
+// CREATE THE GUESS BOXES
 
 const guess_containers = ["row1", "row2", "row3", "row4", "row5", "row6"];
 
@@ -121,6 +106,33 @@ guess_containers.forEach(element => {
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
+
+
+// trying to fetch to an api
+/*
+const data = null;
+let mysteryWord = null;
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener('readystatechange', function () {
+	if (this.readyState === this.DONE) {
+		mysteryWord = this.responseText;
+	}
+});
+
+xhr.open('GET', 'https://random-words5.p.rapidapi.com/getRandom?wordLength=5');
+xhr.setRequestHeader('X-RapidAPI-Key', 'e8c30f1820mshc210abe883c5745p10fa00jsn57b3fbae7da2');
+xhr.setRequestHeader('X-RapidAPI-Host', 'random-words5.p.rapidapi.com');
+
+xhr.send(data);
+
+function getMysteryWord() {
+    return mysteryWord;
+}
+*/
+//
 
 function splitMysteryWordArray(mysteryWord) {
     let mysteryWordArray = new Array();
