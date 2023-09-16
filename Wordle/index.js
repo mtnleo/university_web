@@ -40,6 +40,7 @@ function checkWin(colorArray) {
 
 // get the value of the button that's getting clicked
 function reply_click(e) {
+    
     if (e != "Remove" && e != "Enter" && cursor.getWord().length < 5) {
         cursor.addLetter(e);
         document.getElementById("r" + cursor.getRow() + "c" + cursor.getColumn()).innerText = e.toUpperCase();
@@ -53,7 +54,7 @@ function reply_click(e) {
     else if (e == "Enter" && cursor.getWord().length == 5) {
         //got to check first if word exists, then:
 
-        let colorArray = checkWordSent(cursor.getWord(), getMysteryWord()); // I hardcode it now, gotta change it later
+        let colorArray = checkWordSent(cursor.getWord(), getMysteryWord()); 
         let curRow = cursor.getRow();
 
         for (let j = 0; j < 5; j++) {
@@ -79,6 +80,11 @@ function reply_click(e) {
         cursor.increaseRow();
 
         if(checkWin(colorArray)) {
+            document.getElementById("coverScreen").style.display = "inline-flex";
+            document.getElementById("coverScreen").style.animationName = "cover_screen";
+            document.getElementById("coverScreen").style.animationDuration = "1s";
+            document.getElementById("coverScreen").style.animationFillMode = "forwards";
+
             document.getElementById("scoreModal").style.display = "inline-flex";
             document.getElementById("scoreModal").style.animationName = "animate_top";
             document.getElementById("scoreModal").style.animationDuration = "1s";
@@ -88,6 +94,7 @@ function reply_click(e) {
             document.getElementById("winLoseText").style.color = "green";
             document.getElementById("winLoseText").innerText = "You win!";
         } else if(cursor.getRow() > 6) {
+            gameOver = true;
             document.getElementById("scoreModal").style.display = "inline-flex";
             document.getElementById("scoreModal").style.animationName = "animate_top";
             document.getElementById("scoreModal").style.animationDuration = "1s";
