@@ -80,12 +80,20 @@ function reply_click(e) {
 
         if(checkWin(colorArray)) {
             document.getElementById("scoreModal").style.display = "inline-flex";
-            document.getElementById("mysteryWord").innerText = getMysteryWord();
+            document.getElementById("scoreModal").style.animationName = "animate_top";
+            document.getElementById("scoreModal").style.animationDuration = "1s";
+            document.getElementById("scoreModal").style.animationFillMode = "forwards";
+
+            document.getElementById("mysteryWord").innerText = getMysteryWord().toUpperCase();
             document.getElementById("winLoseText").style.color = "green";
             document.getElementById("winLoseText").innerText = "You win!";
         } else if(cursor.getRow() > 6) {
             document.getElementById("scoreModal").style.display = "inline-flex";
-            document.getElementById("mysteryWord").innerText = getMysteryWord();
+            document.getElementById("scoreModal").style.animationName = "animate_top";
+            document.getElementById("scoreModal").style.animationDuration = "1s";
+            document.getElementById("scoreModal").style.animationFillMode = "forwards";
+
+            document.getElementById("mysteryWord").innerText = getMysteryWord().toUpperCase();
             document.getElementById("winLoseText").style.color = "red";
             document.getElementById("winLoseText").innerText = "You lose!";
         }

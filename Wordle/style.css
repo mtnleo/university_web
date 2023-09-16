@@ -150,3 +150,8 @@ button:not(:hover) {
     font-size:xx-large;
     font-weight:bolder;
 }
+
+@keyframes animate_top {
+    from {top: -300px; opacity: 0}
+    to {top: 10%; opacity: 1}
+  }
