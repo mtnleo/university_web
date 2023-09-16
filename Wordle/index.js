@@ -52,6 +52,7 @@ function reply_click(e) {
     }
     else if (e == "Enter" && cursor.getWord().length == 5) {
         //got to check first if word exists, then:
+
         let colorArray = checkWordSent(cursor.getWord(), getMysteryWord()); // I hardcode it now, gotta change it later
         let curRow = cursor.getRow();
 
@@ -76,6 +77,18 @@ function reply_click(e) {
         cursor.setColumn(0);
         cursor.deleteWord();
         cursor.increaseRow();
+
+        if(checkWin(colorArray)) {
+            document.getElementById("scoreModal").style.display = "inline-flex";
+            document.getElementById("mysteryWord").innerText = getMysteryWord();
+            document.getElementById("winLoseText").style.color = "green";
+            document.getElementById("winLoseText").innerText = "You win!";
+        } else if(cursor.getRow() > 6) {
+            document.getElementById("scoreModal").style.display = "inline-flex";
+            document.getElementById("mysteryWord").innerText = getMysteryWord();
+            document.getElementById("winLoseText").style.color = "red";
+            document.getElementById("winLoseText").innerText = "You lose!";
+        }
 
     }
     
@@ -109,7 +122,7 @@ guess_containers.forEach(element => {
 ///////////////////////////////////////////////////////////////
 
 
-// trying to fetch to an api
+// fetch to an api
 
 const data = null;
 let mysteryWord = null;
@@ -132,6 +145,7 @@ xhr.send(data);
 function getMysteryWord() {
     return mysteryWord;
 }
+
 
 //
 

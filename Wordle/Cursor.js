@@ -29,9 +29,7 @@ export class Cursor {
     // METHODS ---------------------------------------
 
     increaseRow() {
-        if(this.row < 6) {
-            this.row++;
-        }
+        this.row++;
     }
 
     increaseColumn() {
