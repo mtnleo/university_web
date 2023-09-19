@@ -1,3 +1,4 @@
+
 // importing the Cursor class to control the keyboard and guesses
 import {Cursor} from "./Cursor.js"
 
@@ -8,7 +9,7 @@ const containers = ["top_row_kb", "mid_row_kb", "btm_row_kb"];
 
 const cursor = new Cursor();
 
-// building the page ---------------------------
+// building the keyboard ---------------------------
 let i = 0;
 
 keyboard.forEach(element => {
@@ -19,7 +20,7 @@ keyboard.forEach(element => {
         
         let newButton = document.createElement("button");
         newButton.setAttribute("id", element);
-        newButton.onclick = () => reply_click(element)
+        newButton.onclick = () => reply_click(element);
         let nodeButton = document.createTextNode(element.toUpperCase());
         newButton.appendChild(nodeButton);
 
@@ -52,8 +53,12 @@ function reply_click(e) {
         document.getElementById("r" + cursor.getRow() + "c" + cursor.getColumn()).innerText = "";
     }
     else if (e == "Enter" && cursor.getWord().length == 5) {
-        //got to check first if word exists, then:
-
+        // dictionary api github.com/meetDeveloper/freeDictionaryAPI
+        //got to check first if word exists,
+        // I can do so by adding the words api and asking it to retrieve the word
+        // if code is 404 then the word doesn't exist
+        
+        //then:
         let colorArray = checkWordSent(cursor.getWord(), getMysteryWord()); 
         let curRow = cursor.getRow();
 
@@ -104,6 +109,11 @@ function reply_click(e) {
             document.getElementById("winLoseText").style.color = "red";
             document.getElementById("winLoseText").innerText = "You lose!";
         }
+    
+
+        
+
+        
 
     }
     
@@ -127,6 +137,36 @@ guess_containers.forEach(element => {
         container.appendChild(newBox);
     }
 })
+
+// change light/dark mode
+let light_mode = true;
+
+function changeMode() {
+    console.log("Change mode");
+    if (light_mode) {
+        document.body.style.animationName = "set_to_dark_mode";
+        document.body.style.animationDuration = "1s";
+        document.body.style.animationFillMode = "forwards";
+    }
+    else {
+        document.body.style.animationName = "set_to_light_mode";
+        document.body.style.animationDuration = "1s";
+        document.body.style.animationFillMode = "forwards";
+    }
+    
+    light_mode = !light_mode;
+}
+
+let newOptionButton = document.createElement("button");
+newOptionButton.setAttribute("id", "dark_light_mode");
+newOptionButton.onclick = () => changeMode();
+let nodeOptionButton = document.createTextNode("🌕");
+newOptionButton.appendChild(nodeOptionButton);
+
+let options_div = document.getElementById("options_buttons");
+options_div.appendChild(newOptionButton);
+
+
 
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
@@ -161,6 +201,7 @@ function getMysteryWord() {
     return mysteryWord;
 }
 
+// get if word exists
 
 //
 
@@ -184,7 +225,7 @@ function checkWordSent(wordSent, mysteryWord) {
     else {
         for (let i = 0; i < 5; i++) {
             if (wordSent[i].toUpperCase() != mysteryWordArray[i].toUpperCase()) {
-                if (mysteryWordArray.includes(wordSent[i])) { //don't have wifi rn to check if this is like python, will check it later
+                if (mysteryWordArray.includes(wordSent[i])) { 
                     colorArray[i] = "yellow";
                 }
                 else {
@@ -199,3 +240,4 @@ function checkWordSent(wordSent, mysteryWord) {
 
     return colorArray;
 }
+
