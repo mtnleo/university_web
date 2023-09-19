@@ -175,19 +175,46 @@ button:not(:hover) {
 }
 
 @keyframes set_to_dark_mode {
-    from {
+    0% {
         background: radial-gradient(circle, rgba(120,133,194,0.5215336134453781) 0%, rgba(23,109,154,0.6671918767507004) 100%);
     }
-    to {
+    100% {
         background: radial-gradient(circle, rgba(66, 73, 110, 0.895) 0%, rgba(6, 5, 43, 0.735) 100%);
     }
 }
 
 @keyframes set_to_light_mode {
-    from {
+    0% {
         background: radial-gradient(circle, rgba(66, 73, 110, 0.895) 0%, rgba(6, 5, 43, 0.735) 100%);
         }
-    to {
+    100% {
         background: radial-gradient(circle, rgba(120,133,194,0.5215336134453781) 0%, rgba(23,109,154,0.6671918767507004) 100%);
         }
 }
+
+body.dark-mode {
+    animation: set_to_dark_mode 2s linear forwards;
+}
+
+body.light-mode {
+    animation: set_to_light_mode 2s linear forwards;
+}
+
+
+
+#dark_light_mode {
+    font-size: xx-large;
+}
+
+#dark_light_mode:hover {
+    cursor: pointer;
+}
+
+#options_buttons {
+    display: inline-block;
+    position: absolute;
+    top: 2rem;
+    right: 15rem;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.662);
+}
+

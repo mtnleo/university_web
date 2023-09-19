@@ -142,22 +142,23 @@ guess_containers.forEach(element => {
 let light_mode = true;
 
 function changeMode() {
-    console.log("Change mode");
     if (light_mode) {
         document.body.style.animationName = "set_to_dark_mode";
         document.body.style.animationDuration = "1s";
+        document.body.style.animationDirection = "linear";
         document.body.style.animationFillMode = "forwards";
     }
     else {
         document.body.style.animationName = "set_to_light_mode";
         document.body.style.animationDuration = "1s";
+        document.body.style.animationDirection = "linear";
         document.body.style.animationFillMode = "forwards";
     }
     
     light_mode = !light_mode;
 }
 
-let newOptionButton = document.createElement("button");
+let newOptionButton = document.createElement("text");
 newOptionButton.setAttribute("id", "dark_light_mode");
 newOptionButton.onclick = () => changeMode();
 let nodeOptionButton = document.createTextNode("🌕");
@@ -178,7 +179,7 @@ options_div.appendChild(newOptionButton);
 
 
 // fetch to an api
-
+/*
 const data = null;
 let mysteryWord = null;
 
@@ -196,9 +197,10 @@ xhr.setRequestHeader('X-RapidAPI-Key', 'e8c30f1820mshc210abe883c5745p10fa00jsn57
 xhr.setRequestHeader('X-RapidAPI-Host', 'random-words5.p.rapidapi.com');
 
 xhr.send(data);
-
+*/
 function getMysteryWord() {
-    return mysteryWord;
+    //return mysteryWord;
+    return "opalo";
 }
 
 // get if word exists
