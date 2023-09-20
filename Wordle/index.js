@@ -99,7 +99,11 @@ function reply_click(e) {
             document.getElementById("winLoseText").style.color = "green";
             document.getElementById("winLoseText").innerText = "You win!";
         } else if(cursor.getRow() > 6) {
-            gameOver = true;
+            document.getElementById("coverScreen").style.display = "inline-flex";
+            document.getElementById("coverScreen").style.animationName = "cover_screen";
+            document.getElementById("coverScreen").style.animationDuration = "1s";
+            document.getElementById("coverScreen").style.animationFillMode = "forwards";
+
             document.getElementById("scoreModal").style.display = "inline-flex";
             document.getElementById("scoreModal").style.animationName = "animate_top";
             document.getElementById("scoreModal").style.animationDuration = "1s";
@@ -109,11 +113,6 @@ function reply_click(e) {
             document.getElementById("winLoseText").style.color = "red";
             document.getElementById("winLoseText").innerText = "You lose!";
         }
-    
-
-        
-
-        
 
     }
     
@@ -179,7 +178,7 @@ options_div.appendChild(newOptionButton);
 
 
 // fetch to an api
-/*
+
 const data = null;
 let mysteryWord = null;
 
@@ -197,10 +196,9 @@ xhr.setRequestHeader('X-RapidAPI-Key', 'e8c30f1820mshc210abe883c5745p10fa00jsn57
 xhr.setRequestHeader('X-RapidAPI-Host', 'random-words5.p.rapidapi.com');
 
 xhr.send(data);
-*/
+
 function getMysteryWord() {
-    //return mysteryWord;
-    return "opalo";
+    return mysteryWord;
 }
 
 // get if word exists
