@@ -178,7 +178,7 @@ options_div.appendChild(newOptionButton);
 
 
 // fetch to an api
-/*
+
 const data = null;
 let mysteryWord = null;
 
@@ -196,9 +196,8 @@ xhr.setRequestHeader('X-RapidAPI-Key', 'e8c30f1820mshc210abe883c5745p10fa00jsn57
 xhr.setRequestHeader('X-RapidAPI-Host', 'random-words5.p.rapidapi.com');
 
 xhr.send(data);
-*/
+
 function getMysteryWord() {
-    //return mysteryWord;
     return "opalo";
 }
 
