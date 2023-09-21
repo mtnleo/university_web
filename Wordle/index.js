@@ -138,7 +138,7 @@ guess_containers.forEach(element => {
 })
 
 // change light/dark mode
-let light_mode = true;
+let light_mode = false;
 
 function changeMode() {
     if (light_mode) {
@@ -178,7 +178,7 @@ options_div.appendChild(newOptionButton);
 
 
 // fetch to an api
-
+/*
 const data = null;
 let mysteryWord = null;
 
@@ -196,9 +196,10 @@ xhr.setRequestHeader('X-RapidAPI-Key', 'e8c30f1820mshc210abe883c5745p10fa00jsn57
 xhr.setRequestHeader('X-RapidAPI-Host', 'random-words5.p.rapidapi.com');
 
 xhr.send(data);
-
+*/
 function getMysteryWord() {
-    return mysteryWord;
+    //return mysteryWord;
+    return "opalo";
 }
 
 // get if word exists
@@ -214,15 +215,12 @@ function splitMysteryWordArray(mysteryWord) {
 
     return mysteryWordArray;
 }
-
+/*
 function checkWordSent(wordSent, mysteryWord) {
     let mysteryWordArray = splitMysteryWordArray(mysteryWord);
     let colorArray = new Array();
 
-    if (mysteryWordArray == wordSent) { // check later if its all in caps or not
-        console.log("You won"); // provisional code
-    }
-    else {
+    if (mysteryWordArray != wordSent) {
         for (let i = 0; i < 5; i++) {
             if (wordSent[i].toUpperCase() != mysteryWordArray[i].toUpperCase()) {
                 if (mysteryWordArray.includes(wordSent[i])) { 
@@ -240,4 +238,54 @@ function checkWordSent(wordSent, mysteryWord) {
 
     return colorArray;
 }
+*/
+function checkYellowLetters(wordSent, mysteryWord, colorArray) {
+    const wordCount = {};
+    for (let i = 0; i < 5; i++) { //first I want to find the amount of occurences that I have from each letter
+        if (wordCount[(mysteryWord[i])] == undefined) {
+            wordCount[(mysteryWord[i])] = 1;
+        }
+        else {
+            wordCount[(mysteryWord[i])]++;
+        }
+    }
 
+    for (let i = 0; i < 5; i++) {
+        if (colorArray[i] != "green" && wordCount[(wordSent[i])] != undefined) { // if the letter exists (and it isn't green)
+            if (wordCount[(wordSent[i])] > 0) {
+                colorArray[i] = "yellow";
+                wordCount[(wordSent[i])]--;
+            } //
+            else {
+                colorArray[i] = "gray";
+            }
+        }
+    }
+}
+
+function checkWordSent(wordSent, mysteryWord) {
+    let mysteryWordArray = splitMysteryWordArray(mysteryWord);
+    let colorArray = new Array();
+
+    if (mysteryWordArray != wordSent) {
+        for (let i = 0; i < 5; i++) {
+            if (mysteryWordArray.includes(wordSent[i])) {
+                if (wordSent[i] == mysteryWordArray[i]) {
+                    colorArray[i] = "green";
+                }
+            }
+            else {
+                colorArray[i] = "gray";
+            }
+        }
+
+        checkYellowLetters(wordSent, mysteryWordArray, colorArray);
+    }
+    else {
+        for (let i = 0; i < 5; i++) {
+            colorArray[i] = "green";
+        }
+    }
+
+    return colorArray;
+}
