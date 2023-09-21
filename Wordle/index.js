@@ -215,30 +215,8 @@ function splitMysteryWordArray(mysteryWord) {
 
     return mysteryWordArray;
 }
-/*
-function checkWordSent(wordSent, mysteryWord) {
-    let mysteryWordArray = splitMysteryWordArray(mysteryWord);
-    let colorArray = new Array();
 
-    if (mysteryWordArray != wordSent) {
-        for (let i = 0; i < 5; i++) {
-            if (wordSent[i].toUpperCase() != mysteryWordArray[i].toUpperCase()) {
-                if (mysteryWordArray.includes(wordSent[i])) { 
-                    colorArray[i] = "yellow";
-                }
-                else {
-                    colorArray[i] = "gray";
-                }
-            } 
-            else {
-                colorArray[i] = "green";
-            }   
-        }
-    }
 
-    return colorArray;
-}
-*/
 function checkYellowLetters(wordSent, mysteryWord, colorArray) {
     const wordCount = {};
     for (let i = 0; i < 5; i++) { //first I want to find the amount of occurences that I have from each letter
@@ -247,6 +225,14 @@ function checkYellowLetters(wordSent, mysteryWord, colorArray) {
         }
         else {
             wordCount[(mysteryWord[i])]++;
+        }
+    }
+
+    for (let i = 0; i < 5; i++) { //getting rid of the green letters so they take their occurences
+        if (colorArray[i] == "green" && wordCount[(wordSent[i])] != undefined) {
+            if (wordCount[(wordSent[i])] > 0) {
+                wordCount[(wordSent[i])]--;
+            }
         }
     }
 
