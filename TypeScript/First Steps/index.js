@@ -47,3 +47,47 @@ var Perro = /** @class */ (function (_super) {
 }(Animal));
 var Boris = new Perro("Boris");
 Boris.HacerSonido();
+//4.
+function repetir(n, x) {
+    var arreglo_repeticiones = [];
+    for (var i = 0; i < n; i++) {
+        arreglo_repeticiones.push(x);
+    }
+    return arreglo_repeticiones;
+}
+console.log(repetir(5, 2));
+console.log(repetir(5, "To"));
+//5.
+var Dias;
+(function (Dias) {
+    Dias["Lunes"] = "Lunes";
+    Dias["Martes"] = "Martes";
+    Dias["Miercoles"] = "Miercoles";
+    Dias["Jueves"] = "Jueves";
+    Dias["Viernes"] = "Viernes";
+    Dias["Sabado"] = "Sabado";
+    Dias["Domingo"] = "Domingo";
+})(Dias || (Dias = {}));
+var hoy = Dias.Lunes;
+console.log("Hoy es " + hoy.toLowerCase());
+var Circulo = /** @class */ (function () {
+    function Circulo(radio) {
+        this.radio = radio;
+    }
+    Circulo.prototype.calcularArea = function () {
+        return ((Math.pow(this.radio, 2)) * Math.PI);
+    };
+    return Circulo;
+}());
+var miCirculo = new Circulo(8);
+console.log("Area de mi circulo: " + miCirculo.calcularArea());
+// 7.
+function intercambiar(a, b) {
+    console.log("Antes -> A: " + a + "B: " + b);
+    var aux = b;
+    b = a;
+    a = aux;
+    console.log("Despues -> A: " + a + "B: " + b);
+}
+intercambiar(2, 4);
+intercambiar("Hola", "Chau");
