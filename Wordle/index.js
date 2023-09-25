@@ -198,7 +198,7 @@ xhr.setRequestHeader('X-RapidAPI-Host', 'random-words5.p.rapidapi.com');
 xhr.send(data);
 
 function getMysteryWord() {
-    return "opalo";
+    return mysteryWord;
 }
 
 // get if word exists
