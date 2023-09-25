@@ -1,0 +1,31 @@
+body {
+    background: radial-gradient(circle, rgba(65, 120, 111, 0.895) 0%, rgba(149, 149, 149, 0.735) 100%);
+}
+
+h1 {
+    font-size: x-large;
+    text-align: center;
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    font-size: large;
+}
+
+#signup {
+    width: 20rem;
+    height: 10rem;
+    background-color: azure;
+    border-radius: 1rem;
+
+    padding-top: 15rem;
+    padding: 10rem;
+    display: flex;
+    justify-content: center;
+    
+    gap: 10rem;
+}
+
+label input {
+    padding: 10px;
+}
