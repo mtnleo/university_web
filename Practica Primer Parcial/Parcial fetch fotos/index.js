@@ -1,12 +1,3 @@
-/*document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("generate_button").addEventListener("click", changeColor(this))
-
-
-});
-
-function changeColor(element) {
-    element.style.color = "blue";
-}*/
 // 1.
 
 function cargarListaFrase(id_lista, id_item, title, body) {
@@ -46,26 +37,34 @@ async function getPhrases() {
     }
 }
 
+//2.
+
+function generateRandomGenerateButton(id) {
+    let div_container = document.getElementById(id);
+
+    let newButton = document.createElement("button");
+    newButton.onclick = getRandomImage;
+    newButton.setAttribute("id", "generate");
+    let nodeButton = document.createTextNode("Generate");
+    newButton.appendChild(nodeButton);
+
+    div_container.appendChild(newButton);
+}
+
 
 getPhrases();
+generateRandomGenerateButton("generate_button");
 
 
-
-/*
-document.getElementById("generate_button").onclick = getRandomImage();
-
-//const img_url = "https://picsum.photos";
-
-
-async function getRandomImage() {
+function getRandomImage() {
     try {
-        const width = Math.floor(Math.random() * 300);
-        const height = Math.floor(Math.random() * 300);
-        const img_url = "https://picsum.photos/${width}/${height}";
+        console.log("Runs");
+        let width = Math.floor(Math.random() * 300);
+        let height = Math.floor(Math.random() * 300);
+        let img_url = "https://picsum.photos/" + width + "/" + height;
         console.log(img_url);
-        const response = await fetch(img_url);
-        document.getElementById("random_image").src = JSON.stringify(response);
+        document.getElementById("random_image").src = img_url;
     } catch (error) {
         console.error("Error: ", error);
     }
-}*/
+}
