@@ -1,0 +1,23 @@
+* {
+    background-color: rgb(40, 40, 40);
+    font: "roboto", sans-serif;
+    font-size: large;
+    color: aliceblue;
+}
+
+.button {
+    background-color: azure;
+    border-radius: 10px;
+    color: black;
+    padding: 5px;
+}
+
+@keyframes resaltar_on {
+    from {color: aliceblue;}
+    to {color: #f7ff01c6;}
+}
+
+@keyframes resaltar_off {
+    from {color: #f7ff01c6;}
+    to {color: aliceblue;}
+}

@@ -59,8 +59,8 @@ generateRandomGenerateButton("generate_button");
 function getRandomImage() {
     try {
         console.log("Runs");
-        let width = Math.floor(Math.random() * 300);
-        let height = Math.floor(Math.random() * 300);
+        let width = Math.floor(Math.random() * 1080);
+        let height = Math.floor(Math.random() * 720);
         let img_url = "https://picsum.photos/" + width + "/" + height;
         console.log(img_url);
         document.getElementById("random_image").src = img_url;
