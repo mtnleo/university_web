@@ -100,7 +100,67 @@ if (window.location.pathname.includes("index.html")) {
     boton_contador.onclick = () => {
         document.getElementById("contador_9").innerText = parseInt(document.getElementById("contador_9").innerText) + 1;
     }
-} else if (window.location.pathname.includes("galeria_imagenes.html")) {
+
+    // 11. Agrega un botón que oculte o muestre un elemento `<div>` con el id "miDiv".
+
+    div_2
+    let boton_esconder_div = document.getElementById("esconder_div");
+
+    boton_esconder_div.onclick = () => {
+        esconderDiv();
+    }
+
+    function esconderDiv() {
+        if (div_2.style.display === "none") { // si esta escondido
+            div_2.style.display = "flex";
+            boton_esconder_div.innerText = "Esconder";
+        }
+        else { // si esta mostrandose
+            div_2.style.display = "none";
+            boton_esconder_div.innerText = "Mostrar";
+        }
+    }
+
+    // 12. Crea un menú desplegable (select) con tres opciones. Al seleccionar una opción,
+    // muestra un mensaje con el valor seleccionado.
+
+    select_comida_favorita = document.getElementById("select_comida_favorita");
+
+    select_comida_favorita.addEventListener("click", () => {
+        document.getElementById("p_comida_favorita").innerText = "Tu comida favorita es " + select_comida_favorita.value;
+        
+    });
+
+    // 13. Implementa un reloj digital que muestre la hora actual y se actualice cada segundo
+    let clock = document.getElementById("clock");
+
+    function imprimirHora() {
+        clock.innerText = new Date();
+    }
+
+    setInterval(() => {
+        imprimirHora();
+    }, 1000);
+
+    // 14. Crea una tabla con filas y columnas. Al hacer clic en una celda, cambia su contenido
+    let ttt = "X";
+
+    document.querySelectorAll('td').forEach(cell => {
+        cell.addEventListener('click', evt => {
+            (evt.target).innerText = ttt;
+            if (ttt === "X") {
+                ttt = "O";
+            }
+            else {
+                ttt = "X";
+            }
+        }); 
+    });
+
+
+
+}
+else if (window.location.pathname.includes("galeria_imagenes.html")) {
     // 10. Crea una galería de imágenes. Al hacer clic en una imagen, muestra su descripción
     // en un elemento `<p>`.
     let p_10, li_10, img_10;

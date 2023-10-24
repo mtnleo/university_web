@@ -29,3 +29,20 @@
 img {
     width: 400px;
 }
+
+#miDiv {
+    display: flex;
+}
+
+#homero {
+    width: 150px;
+}
+
+table, th, td {
+    text-align: center;
+    font-size: larger;
+    width: 16rem;
+    height: 5rem;
+    border: 5px solid white;
+    border-collapse: collapse;
+}
