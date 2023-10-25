@@ -157,7 +157,7 @@ if (window.location.pathname.includes("index.html")) {
         }); 
     });
 
-
+    // 15. 
 
 }
 else if (window.location.pathname.includes("galeria_imagenes.html")) {
