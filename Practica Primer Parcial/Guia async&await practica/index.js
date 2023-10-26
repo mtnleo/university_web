@@ -96,3 +96,39 @@ async function getChuckNorrisJoke() {
 }
 
 getChuckNorrisJoke();
+
+// 5. Crea una función que acepte un arreglo de números y devuelva una Promise que se
+// resuelva con la suma de los números después de 1 segundo. (Usar reduce)
+
+arrNumerosPasar = [4, 5, 9]
+
+function promiseSuma(arrNumeros) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(arrNumeros.reduce((a, b) => {return a + b}));
+        }, 1000);
+    })
+}
+
+async function asyncSuma() {
+    try {
+        let response = await promiseSuma(arrNumerosPasar);
+        console.log(response);
+    } catch (error) {
+        console.error("Error");
+    }
+}
+
+asyncSuma();
+
+// 6. Crea una función asincrónica que haga una solicitud HTTP a una API de tu elección
+// utilizando la función fetch y devuelva el resultado en formato JSON. Maneja los errores
+// posibles
+
+// lo hice en el 4
+
+// 7. Investigar una Api que se pueda paginar. Crea una función asincrónica que haga una
+// serie de solicitudes HTTP secuenciales para obtener datos de una API paginada. Utiliza
+// async/await para manejar la paginación hasta que todos los datos se hayan recuperado.
+
+// na ni idea ya lo que dice esto
